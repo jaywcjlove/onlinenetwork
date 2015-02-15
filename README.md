@@ -19,5 +19,4 @@ window.onLineHandler = function(){
 window.offLineHandler = function(){
     console.log("断开网络！")
 };
-```# onlinenetwork
-# onlinenetwork
+```

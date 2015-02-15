@@ -79,8 +79,6 @@
 		getExplorer: function(newStatus){
 			var explorer = window.navigator.userAgent;
             this.setStatus(newStatus)
-
-            console.log("test:3",url)
 			if((explorer.indexOf('Firefox') >= 0 || explorer.indexOf('MSIE') >= 0)&&url){
 				console.log("test:1")
                 this.checkOnLine()

@@ -2,8 +2,8 @@
 
 ### 设置轮询时间和地址
 
-> `time` 设置轮询时间
-> `url` 当 `url`为空的时候 默认所有浏览器使用 onLine 和 offline事件
+> `time` 设置轮询时间  
+> `url` 当 `url`为空的时候 默认所有浏览器使用 onLine 和 offline事件  
 
 ### 侦听是否连上网络
 

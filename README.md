@@ -11,12 +11,12 @@
 ```
 
 ### 设置轮询时间和地址
+> time： 时间不设置默认2000  
+> url：不设置默认所有浏览器用 `online` 和 `offline`事件  
 
 ```js
 var net = onlinenetwork({
-    //time ： 时间不设置默认2000
     "time":1000,
-    //url：不设置默认所有浏览器用 `online` 和 `offline`事件
     "url":"http://*******.com/ping.php"
 })
 ```

@@ -4,28 +4,34 @@
 
 总之在`IE`和`Firefox`中一般情况下不能触发这俩事件，只有在选择脱机状态下才能触发此事件。
 
+### 引用 `online.js`
+
+```html
+<script type="text/javascript" src="online.js"></script>
+```
+
 ### 设置轮询时间和地址
-在online.js中设置以下
-
-> `time` 设置轮询时间  
-> `url` 当 `url`为空的时候 默认所有浏览器使用 onLine 和 offline事件  
->  - url 不为空的时候 IE  和 Firefox 使用 AJAX 轮询判断网络是否连接
->  - url 请求的可以是服务器一个空php 等文件
->  - 文件可以设置头文件，避免轮询跑更多的流量
-
-
-### 侦听是否连上网络
 
 ```js
-window.onLineHandler = function(){
+var net = onlinenetwork({
+    "time":1000,
+    "url":"http://*******.com/ping.php"
+})
+```
+
+### 连上网络执行
+
+```
+net.onLineHandler(function(){
     console.log("连上了！")
-};
+})
 ```
 
-### 侦听是否断开网络
+### 断开网络执行
 
 ```js
-window.offLineHandler = function(){
+net.offLineHandler(function(){
     console.log("断开网络！")
-};
+})
 ```
+

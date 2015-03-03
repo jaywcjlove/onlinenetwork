@@ -1,22 +1,31 @@
 ;(function(w){
     var xmlhttp = new XMLHttpRequest(),
         time=2000,//设置轮询时间
-        url="http://********.com/online.php";
-        //当 `url`为空的时候 默认所有浏览器使用 onLine 和 offline事件
+        url ="",//当 `url`为空的时候 默认所有浏览器使用 onLine 和 offline事件
+        OL  = OL || {};
 
-    w.onlinenetwork = w.onlinenetwork || {};
-    w.onlinenetwork = {
+    OL={
+        OL_api:{//扩展API
+            onLineHandler:function(func){
+                onlinenetwork.online=func
+                return this
+            },
+            offLineHandler:function(func){
+                onlinenetwork.offline=func
+                return this
+            }
+        },
         setStatus:function (newStatus) {
             this.eventStatus(newStatus);
             w.onLine = newStatus;
         },
         //状态改变执行事件
         eventStatus: function (newStatus) {
-            if (newStatus === true && w.onLineHandler !== undefined && (w.onLine !== true || this.handlerFired === false)) {
-                w.onLineHandler();
+            if (newStatus === true && onlinenetwork.online !== undefined && (w.onLine !== true || this.handlerFired === false)) {
+                onlinenetwork.online();
             }
-            if (newStatus === false && w.offLineHandler !== undefined && (w.onLine !== false || this.handlerFired === false)) {
-                w.offLineHandler();
+            if (newStatus === false && onlinenetwork.offline !== undefined && (w.onLine !== false || this.handlerFired === false)) {
+                onlinenetwork.offline();
             }
             this.handlerFired = true;
         },
@@ -41,7 +50,7 @@
             this.tryToSend(xmlhttp);
         },
         processXmlhttpStatus: function () {
-            var tempOnLine = w.onlinenetwork.verifyStatus(xmlhttp.status);
+            var tempOnLine = this.verifyStatus(xmlhttp.status);
             this.setStatus(tempOnLine);
         },
         //尝试发送请求
@@ -62,7 +71,10 @@
         },
         //非 chrome 和 Safari 浏览器不停的检查，嘿嘿
         startCheck:function(){
-            setInterval("window.onlinenetwork.XMLHttpLogic(true)",time);
+            var self = this
+            setInterval(function(){
+                self.XMLHttpLogic(true)
+            },time);
         },
         //第一次检查是否在线
         checkOnLine:function(){
@@ -79,13 +91,15 @@
         getExplorer: function(newStatus){
             var explorer = window.navigator.userAgent;
             this.setStatus(newStatus)
+            console.log(explorer)
+            console.log(url)
             if((explorer.indexOf('Firefox') >= 0 || explorer.indexOf('MSIE') >= 0)&&url){
-                console.log("test:1")
+                console.log("getExplorer:1")
                 this.checkOnLine()
                 this.setStatus(newStatus)
                 this.startCheck(newStatus)
             }else{
-                console.log("test:2")
+                console.log("getExplorer:2")
                 this.eventStatus(newStatus)
             }
         },
@@ -112,6 +126,15 @@
             this.handlerFired = false;
         }
     }
-    w.onlinenetwork.init()
-    
+
+    onlinenetwork=function (json){
+        if(json){
+            if (json.time) time=json.time;
+            if (json.url) url=json.url;
+        }
+        OL.init()
+        for (var a in OL.OL_api) this[a]=OL.OL_api[a];
+        return this
+    }
+    w.onlinenetwork=onlinenetwork
 })(window);

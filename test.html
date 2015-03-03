@@ -8,12 +8,19 @@
 <body>
 <script type="text/javascript">
 
-window.onLineHandler = function(){
+var a = onlinenetwork({
+	"time":1000,
+	"url":"http://*******.com/ping.php"
+})
+
+a.onLineHandler(function(){
 	console.log("连上了！")
-};
-window.offLineHandler = function(){
+})
+
+a.offLineHandler(function(){
 	console.log("断开网络！")
-};
+})
+
 </script>
 </body>
 </html>

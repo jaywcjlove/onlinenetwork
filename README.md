@@ -23,7 +23,7 @@ var net = onlinenetwork({
 
 ### 连上网络执行
 
-```
+```js
 net.onLineHandler(function(){
     console.log("连上了！")
 })

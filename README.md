@@ -1,4 +1,4 @@
-## js判断是否断网了
+# js判断是否断网了
 
 [![GitHub issues](https://img.shields.io/github/issues/jaywcjlove/onlinenetwork.svg)](https://github.com/jaywcjlove/onlinenetwork/issues) [![GitHub forks](https://img.shields.io/github/forks/jaywcjlove/onlinenetwork.svg)](https://github.com/jaywcjlove/onlinenetwork/network) [![GitHub stars](https://img.shields.io/github/stars/jaywcjlove/onlinenetwork.svg)](https://github.com/jaywcjlove/onlinenetwork/stargazers)
 
@@ -6,13 +6,19 @@
 
 总之在`IE`和`Firefox`中一般情况下不能触发这俩事件，只有在选择脱机状态下才能触发此事件。
 
-### 引用 `online.js`
+## 下载
+
+```
+$ bower info onlinenetwork
+```
+
+## 引用 `online.js`
 
 ```html
 <script type="text/javascript" src="online.js"></script>
 ```
 
-### 设置轮询时间和地址
+## 设置轮询时间和地址
 > time： 时间不设置默认2000  
 > url：不设置默认所有浏览器用 `online` 和 `offline`事件  
 
@@ -23,7 +29,7 @@ var net = onlinenetwork({
 })
 ```
 
-### 连上网络执行
+## 连上网络执行
 
 ```js
 net.onLineHandler(function(){
@@ -31,7 +37,7 @@ net.onLineHandler(function(){
 })
 ```
 
-### 断开网络执行
+## 断开网络执行
 
 ```js
 net.offLineHandler(function(){

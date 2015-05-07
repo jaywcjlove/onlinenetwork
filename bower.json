@@ -1,0 +1,20 @@
+{
+  "name": "onlinenetwork",
+  "version": "0.2.0",
+  "authors": [
+    "jaywcjlove <398188662@qq.com>"
+  ],
+  "description": "js determine whether off the net.",
+  "keywords": [
+    "onlinenetwork"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jaywcjlove/onlinenetwork",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
